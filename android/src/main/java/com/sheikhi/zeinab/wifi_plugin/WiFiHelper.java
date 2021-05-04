@@ -76,6 +76,14 @@ public class WiFiHelper {
         }
         return accessPointList;
     }
+    
+    /**
+        Enable WiFi
+     **/
+    public boolean enableWiFi() {
+        wifiManager.setWifiEnabled(true);
+        return wifiManager.isWifiEnabled();
+    }
 
     BroadcastReceiver wifiScanReceiver = new BroadcastReceiver() {
         @Override

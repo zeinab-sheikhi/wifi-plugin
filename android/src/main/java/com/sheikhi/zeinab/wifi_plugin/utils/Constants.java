@@ -7,6 +7,7 @@ public class Constants {
     public static final String GET_ACCESS_POINTS_CHANNEL = "getAccessPoints";
     public static final String GET_WIFI_SCANNER_CHANNEL = "getWiFiScanner";
     public static final String REQUEST_NEW_SCAN_CHANNEL = "requestNewScan";
+    public static final String ENABLE_WIFI_CHANNEL = "enableWifi";
     public static final String CHANNEL_NAME = "wifi_plugin";
     public static final String CHANNEL_ARGUMENT_KEYWORD = "newScan";
 
