@@ -39,4 +39,12 @@ class Wifi {
     }
   }
 
+  static void enableWiFi() async {
+    try{
+      await _channel.invokeMethod("enableWifi");
+    } on PlatformException {
+      print('Error in Enabling Wifi!');
+    }
+  }
+
 }
