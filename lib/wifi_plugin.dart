@@ -9,7 +9,7 @@ class Wifi {
 
   static Future<Map<dynamic, dynamic>> get accessPoints async{
 
-     late Map<dynamic, dynamic> ssidRssiValues;
+      Map<dynamic, dynamic> ssidRssiValues = {};
     try{
       ssidRssiValues = await _channel.invokeMethod("getAccessPoints");
       return ssidRssiValues;
