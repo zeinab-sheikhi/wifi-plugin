@@ -27,6 +27,8 @@ public class Util {
 
         HashMap<String, String> accessPointMap = new HashMap<>();
         String ssid = accessPoint.SSID;
+        if(ssid.equals(""))
+            ssid = "Hidden SSID";
         String bssid = accessPoint.BSSID;
         int level = accessPoint.level;
         int frequency = accessPoint.frequency;

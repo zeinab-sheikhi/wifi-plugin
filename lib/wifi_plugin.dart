@@ -12,7 +12,6 @@ class Wifi {
       Map<dynamic, dynamic> ssidRssiValues = {};
     try{
       ssidRssiValues = await _channel.invokeMethod("getAccessPoints");
-      return ssidRssiValues;
     } on PlatformException {
       print('Error in Performing Channel');
     }
@@ -21,7 +20,7 @@ class Wifi {
 
   static Future<List<dynamic>> get wifiScanner async {
 
-     late var accessPoint;
+     List<dynamic> accessPoint = [];
      try{
       accessPoint = await _channel.invokeMethod("getWiFiScanner");
     } on PlatformException {
