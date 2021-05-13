@@ -22,17 +22,15 @@ public class WiFiMethodChannelHandler implements MethodChannel.MethodCallHandler
                 result.success(wifiHelper.getAccessPoints());
                 break;
             case Constants.REQUEST_NEW_SCAN_CHANNEL:
-                Constants.enableNewScan = call.argument(Constants.CHANNEL_ARGUMENT_KEYWORD);
+                Constants.enableNewScan = call.argument(Constants.CHANNEL_ARGUMENT_NEW_SCAN_KEY);
                 break;
             case Constants.GET_WIFI_SCANNER_CHANNEL:
                 result.success(wifiHelper.wifiScanner());
                 break;
             case Constants.ENABLE_WIFI_CHANNEL:
-                result.success(wifiHelper.enableWiFi());
+                wifiHelper.enableWiFi(call.argument(Constants.CHANNEL_ARGUMENT_WIFI_ENABLE_KEY));
                 break;
-            case Constants.DISABLE_WIFI_CHANNEL:
-                result.success(wifiHelper.disableWiFi());
-                break;
+            
             default:
                 result.notImplemented();
                 break;

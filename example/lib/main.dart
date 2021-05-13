@@ -31,11 +31,18 @@ class _MyAppState extends State<MyApp> {
             children: [
             ElevatedButton(
               onPressed: () {
-                Wifi.requestNewScan(false);
-                getAccessPoints();
+                _enableWiFi();
             },
-              child: Text('SCAN'),),
-          ],),
+              child: Text('Enable'),
+            ),
+              ElevatedButton(
+                onPressed: () {
+                  _disableWifi();
+                },
+                child: Text('Disable'),
+              ),
+          ],
+          ),
         ),
       ),
     );
@@ -66,5 +73,12 @@ class _MyAppState extends State<MyApp> {
         int channel = int.parse(wifi['channel']);
       });
     });
+  }
+
+  void _enableWiFi() {
+    Wifi.enableWiFi(true);
+  }
+  void _disableWifi() {
+    Wifi.enableWiFi(false);
   }
 }

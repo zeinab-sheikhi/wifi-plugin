@@ -38,26 +38,13 @@ class Wifi {
     }
   }
 
-  static Future<bool> enableWiFi() async {
+  static void enableWiFi(bool enable) async {
 
-    bool _isEnable = true;
     try{
-      _isEnable = await _channel.invokeMethod("enableWifi");
+      await _channel.invokeMethod("enableWifi", {"enable": enable});
     } on PlatformException {
       print('Error in Enabling Wifi!');
     }
-    return _isEnable;
-  }
-
-  static Future<bool> disableWiFi() async {
-
-    bool _isEnable = false;
-    try{
-      _isEnable = await _channel.invokeMethod("disableWifi");
-    } on PlatformException {
-      print('Error in Disabling WiFi');
-    }
-    return _isEnable;
   }
 
 }

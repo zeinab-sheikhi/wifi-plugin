@@ -77,22 +77,28 @@ public class WiFiHelper {
         return accessPointList;
     }
     
+//    /**
+//        Enable WiFi
+//     **/
+//    public boolean enableWiFi() {
+//        wifiManager.setWifiEnabled(true);
+//        return true;
+//    }
     /**
-        Enable WiFi
+     Enable or Disable WiFi
      **/
-    public boolean enableWiFi() {
-        wifiManager.setWifiEnabled(true);
-        return true;
+    public void enableWiFi(boolean enable) {
+        wifiManager.setWifiEnabled(enable);
     }
 
-    /**
-     * Disable WiFi
-     */
-    public boolean disableWiFi() {
-        wifiManager.setWifiEnabled(false);
-        return false;
-    }
-
+//    /**
+//     * Disable WiFi
+//     */
+//    public boolean disableWiFi() {
+//        wifiManager.setWifiEnabled(false);
+//        return false;
+//    }
+    
     BroadcastReceiver wifiScanReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
