@@ -82,7 +82,7 @@ public class WiFiHelper {
      **/
     public boolean enableWiFi() {
         wifiManager.setWifiEnabled(true);
-        return wifiManager.isWifiEnabled();
+        return true;
     }
 
     /**
@@ -90,7 +90,7 @@ public class WiFiHelper {
      */
     public boolean disableWiFi() {
         wifiManager.setWifiEnabled(false);
-        return wifiManager.isWifiEnabled();
+        return false;
     }
 
     BroadcastReceiver wifiScanReceiver = new BroadcastReceiver() {
