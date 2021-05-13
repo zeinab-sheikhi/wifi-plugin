@@ -3,6 +3,7 @@ package com.sheikhi.zeinab.wifi_plugin.utils;
 public class Constants {
 
     public static boolean enableNewScan = true;
+    public static boolean enableWiFi = true;
 
     public static final String GET_ACCESS_POINTS_CHANNEL = "getAccessPoints";
     public static final String GET_WIFI_SCANNER_CHANNEL = "getWiFiScanner";
