@@ -40,7 +40,7 @@ class Wifi {
 
   static Future<bool> enableWiFi() async {
 
-    bool _isEnable = false;
+    bool _isEnable = true;
     try{
       _isEnable = await _channel.invokeMethod("enableWifi");
     } on PlatformException {
