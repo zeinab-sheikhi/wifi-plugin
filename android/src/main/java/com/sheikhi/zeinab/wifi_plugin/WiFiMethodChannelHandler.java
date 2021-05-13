@@ -4,6 +4,8 @@ import androidx.annotation.NonNull;
 
 import com.sheikhi.zeinab.wifi_plugin.utils.Constants;
 
+import java.util.HashMap;
+
 import io.flutter.plugin.common.MethodCall;
 import io.flutter.plugin.common.MethodChannel;
 
@@ -28,7 +30,7 @@ public class WiFiMethodChannelHandler implements MethodChannel.MethodCallHandler
                 result.success(wifiHelper.wifiScanner());
                 break;
             case Constants.ENABLE_WIFI_CHANNEL:
-                wifiHelper.enableWiFi(call.argument("isEnabled"));
+                wifiHelper.enableWiFi( (boolean) call.argument("isEnabled"));
                 break;
             
             default:
