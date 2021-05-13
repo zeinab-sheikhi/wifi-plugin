@@ -38,10 +38,10 @@ class Wifi {
     }
   }
 
-  static void enableWiFi(bool enable) async {
+  static void enableWiFi(bool isEnabled) async {
 
     try{
-      await _channel.invokeMethod("enableWifi", {"enable": enable});
+      await _channel.invokeMethod("enableWifi", {"isEnabled": isEnabled});
     } on PlatformException {
       print('Error in Enabling Wifi!');
     }

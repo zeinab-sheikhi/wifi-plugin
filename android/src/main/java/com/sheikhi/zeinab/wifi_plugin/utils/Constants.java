@@ -11,7 +11,7 @@ public class Constants {
     public static final String ENABLE_WIFI_CHANNEL = "enableWifi";
     public static final String CHANNEL_NAME = "wifi_plugin";
     public static final String CHANNEL_ARGUMENT_NEW_SCAN_KEY = "newScan";
-    public static final String CHANNEL_ARGUMENT_WIFI_ENABLE_KEY = "enable";
+    public static final String CHANNEL_ARGUMENT_WIFI_ENABLE_KEY = "isEnabled";
 
     // HashMap keys
     public static final String BSSID = "BSSID";
