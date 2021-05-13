@@ -30,6 +30,9 @@ public class WiFiMethodChannelHandler implements MethodChannel.MethodCallHandler
             case Constants.ENABLE_WIFI_CHANNEL:
                 result.success(wifiHelper.enableWiFi());
                 break;
+            case Constants.DISABLE_WIFI_CHANNEL:
+                result.success(wifiHelper.disableWiFi());
+                break;
             default:
                 result.notImplemented();
                 break;

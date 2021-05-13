@@ -85,6 +85,14 @@ public class WiFiHelper {
         return wifiManager.isWifiEnabled();
     }
 
+    /**
+     * Disable WiFi
+     */
+    public boolean disableWiFi() {
+        wifiManager.setWifiEnabled(false);
+        return wifiManager.isWifiEnabled();
+    }
+
     BroadcastReceiver wifiScanReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
