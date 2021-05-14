@@ -83,6 +83,8 @@ public class WiFiHelper {
     public void enableWiFi(boolean enable) {
         wifiManager.setWifiEnabled(enable);
     }
+    
+    public boolean isWiFiEnable() {return wifiManager.isWifiEnabled();}
 
     BroadcastReceiver wifiScanReceiver = new BroadcastReceiver() {
         @Override

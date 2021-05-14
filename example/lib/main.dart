@@ -13,9 +13,12 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
 
+  bool _isEnable = false;
+
   @override
   void initState() {
     super.initState();
+    isWifiEnable();
   }
 
   @override
@@ -30,17 +33,12 @@ class _MyAppState extends State<MyApp> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
             ElevatedButton(
+              child: Text('Is Enable?'),
               onPressed: () {
-                _enableWiFi();
+                isWifiEnable();
+                print(_isEnable);
             },
-              child: Text('Enable'),
             ),
-              ElevatedButton(
-                onPressed: () {
-                  _disableWifi();
-                },
-                child: Text('Disable'),
-              ),
           ],
           ),
         ),
@@ -80,5 +78,12 @@ class _MyAppState extends State<MyApp> {
   }
   void _disableWifi() {
     Wifi.enableWiFi(false);
+  }
+
+  void isWifiEnable() async{
+    bool result = await Wifi.isWiFiEnable;
+    setState(() {
+      _isEnable = result;
+    });
   }
 }
