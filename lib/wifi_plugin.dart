@@ -7,14 +7,22 @@ class Wifi {
   static const MethodChannel _channel =
   const MethodChannel('wifi_plugin');
 
-  static Future<Map<dynamic, dynamic>> get accessPoints async{
+  static Future<Map<dynamic, dynamic>>  getAccessPoints(int index) async{
       Map<dynamic, dynamic> ssidRssiValues = {};
     try{
-      ssidRssiValues = await _channel.invokeMethod("getAccessPoints");
+      ssidRssiValues = await _channel.invokeMethod("getAccessPoints", {"index": index});
     } on PlatformException {
       print('Error in Performing Channel');
     }
     return ssidRssiValues;
+  }
+
+  static void setRssiListSize(int size) async {
+    try{
+      await _channel.invokeMethod("setRssiListSize", {"size": size});
+    } on PlatformException {
+      print('Error in Performing Channel');
+    }
   }
 
   static Future<List<dynamic>> get wifiScanner async {

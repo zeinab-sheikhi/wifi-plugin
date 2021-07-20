@@ -21,19 +21,14 @@ public class WifiPlugin implements FlutterPlugin {
   private MethodChannel channel;
   private Context context;
 
-
-  public WifiPlugin() {
-
-  }
+  public WifiPlugin() {}
 
   @SuppressWarnings("deprecation")
   public static void registerWith(Registrar registrar) {
     final WifiPlugin instance = new WifiPlugin();
     instance.setUpChannel(registrar.context(), registrar.messenger());
   }
-
-
-
+  
   @Override
   public void onAttachedToEngine(@NonNull FlutterPluginBinding flutterPluginBinding) {
     context = flutterPluginBinding.getApplicationContext();

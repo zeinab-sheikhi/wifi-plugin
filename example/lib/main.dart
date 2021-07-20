@@ -14,6 +14,8 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
 
   bool _isEnable = false;
+  int index = 0;
+  int size = 20;
 
   @override
   void initState() {
@@ -33,10 +35,12 @@ class _MyAppState extends State<MyApp> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
             ElevatedButton(
-              child: Text('Is Enable?'),
+              child: Text('Scan'),
               onPressed: () {
-                isWifiEnable();
-                print(_isEnable);
+                getAccessPoints(index);
+                setState(() {
+                  index = index + 1;
+                });
             },
             ),
           ],
@@ -46,21 +50,19 @@ class _MyAppState extends State<MyApp> {
     );
   }
 
-  void getAccessPoints() async {
-
-    Map<dynamic, dynamic> accessPoints = await Wifi.accessPoints;
-    setState(() {
-      accessPoints.forEach((key, value) {
-        String bssid = key;
-        List<int> rssiValues = List.of(value)?.cast<int>();
-        print(rssiValues);
-      });
+  void getAccessPoints(int index) async {
+    Map<dynamic, dynamic> accessPoints = await Wifi.getAccessPoints(index);
+    accessPoints.forEach((key, value) {
+      print(key);
+      print(value);
     });
+  }
 
+  void setRssiListSize() async {
+    Wifi.setRssiListSize(size);
   }
 
   void wifiScanner() async {
-
     List<dynamic> wifiList = await Wifi.wifiScanner;
     setState(() {
       wifiList.forEach((wifi) {

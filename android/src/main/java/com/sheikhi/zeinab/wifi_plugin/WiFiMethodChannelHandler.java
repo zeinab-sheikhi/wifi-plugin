@@ -21,7 +21,10 @@ public class WiFiMethodChannelHandler implements MethodChannel.MethodCallHandler
     public void onMethodCall(@NonNull MethodCall call, @NonNull MethodChannel.Result result) {
         switch (call.method) {
             case Constants.GET_ACCESS_POINTS_CHANNEL:
-                result.success(wifiHelper.getAccessPoints());
+                result.success(wifiHelper.getAccessPoints((Integer) call.argument("index")));
+                break;
+            case Constants.SET_SIZE:
+                Constants.rssiListSize = call.argument(Constants.CHANNEL_ARGUMENT_RSSIs_SIZE);
                 break;
             case Constants.REQUEST_NEW_SCAN_CHANNEL:
                 Constants.enableNewScan = call.argument(Constants.CHANNEL_ARGUMENT_NEW_SCAN_KEY);

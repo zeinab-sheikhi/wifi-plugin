@@ -11,6 +11,7 @@ import com.sheikhi.zeinab.wifi_plugin.utils.Constants;
 import com.sheikhi.zeinab.wifi_plugin.utils.Util;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -19,10 +20,9 @@ public class WiFiHelper {
     private final WifiManager wifiManager;
     private final Context context;
     private List<ScanResult> scanResults;
-    private HashMap<String, ArrayList<Integer>> bssidRssiMap = new HashMap<>();
+    private HashMap<String, int[]> bssidRssiMap = new HashMap<>();
 
     public WiFiHelper(WifiManager wifiManager, Context context) {
-
         this.context = context;
         this.wifiManager = wifiManager;
         context.registerReceiver(wifiScanReceiver, new
@@ -30,14 +30,13 @@ public class WiFiHelper {
         wifiManager.startScan();
     }
 
-    public HashMap<String, ArrayList<Integer>> getAccessPoints() {
-
+    public HashMap<String, int[]> getAccessPoints(int index) {
         //if new scan is requested, clear previous result.
         if (Constants.enableNewScan)
             bssidRssiMap.clear();
         wifiManager.startScan();
         for (ScanResult accessPoint : scanResults)
-            getAccessPointSpecs(accessPoint);
+            getAccessPointSpecs(accessPoint, index);
         return bssidRssiMap;
     }
 
@@ -45,29 +44,28 @@ public class WiFiHelper {
      Return access point BSSID(MAC Address) and RSSI(level) as a HashMap in which 
      key is access point's mac address and value is list of access point's rssi values.
      **/
-    private void getAccessPointSpecs(ScanResult scanResult) {
-
-        ArrayList<Integer> rssiValues;
+    private void getAccessPointSpecs(ScanResult scanResult, int index) {
         String bssid = scanResult.BSSID;
         int rssi = scanResult.level;
+        System.out.println(bssid + " : " +rssi);
+        int[] rssiList = new int[Constants.rssiListSize];
 
-        if (!bssidRssiMap.containsKey(bssid))
-            rssiValues = new ArrayList<>();
-
-        else
-            rssiValues = bssidRssiMap.get(bssid);
-
-        assert rssiValues != null;
-        rssiValues.add(rssi);
-        bssidRssiMap.put(bssid, rssiValues);
+        if(!bssidRssiMap.containsKey(bssid)) {
+            
+            Arrays.fill(rssiList, -100);
+        }else {
+            rssiList = bssidRssiMap.get(bssid);
+        }
+        assert rssiList!= null;
+        rssiList[index] = rssi;
+        bssidRssiMap.put(bssid, rssiList);
     }
-
+    
     /**
      Return an array of access points in which each access point is a Map. 
      values are access point's SSID, BSSID, RSSI, frequency, channel.
      **/
     public ArrayList<Map<String, String>> wifiScanner() {
-
         ArrayList<Map<String, String>> accessPointList = new ArrayList<>();
         wifiManager.startScan();
         for (ScanResult result : scanResults) {
