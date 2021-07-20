@@ -47,15 +47,13 @@ public class WiFiHelper {
     private void getAccessPointSpecs(ScanResult scanResult, int index) {
         String bssid = scanResult.BSSID;
         int rssi = scanResult.level;
-        System.out.println(bssid + " : " +rssi);
         int[] rssiList = new int[Constants.rssiListSize];
 
-        if(!bssidRssiMap.containsKey(bssid)) {
-            
+        if(!bssidRssiMap.containsKey(bssid))
             Arrays.fill(rssiList, -100);
-        }else {
+        else
             rssiList = bssidRssiMap.get(bssid);
-        }
+        
         assert rssiList!= null;
         rssiList[index] = rssi;
         bssidRssiMap.put(bssid, rssiList);

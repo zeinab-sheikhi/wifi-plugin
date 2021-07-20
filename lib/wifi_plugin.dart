@@ -1,4 +1,3 @@
-
 import 'dart:async';
 
 import 'package:flutter/services.dart';
@@ -7,7 +6,7 @@ class Wifi {
   static const MethodChannel _channel =
   const MethodChannel('wifi_plugin');
 
-  static Future<Map<dynamic, dynamic>>  getAccessPoints(int index) async{
+  static Future<Map<dynamic, dynamic>> getAccessPoints(int index) async{
       Map<dynamic, dynamic> ssidRssiValues = {};
     try{
       ssidRssiValues = await _channel.invokeMethod("getAccessPoints", {"index": index});
